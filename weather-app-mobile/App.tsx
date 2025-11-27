@@ -6,7 +6,7 @@ import { getWeatherTheme } from './src/utils/weather';
 import { WeatherProvider, useWeatherContext } from './src/context/WeatherContext';
 import { CitySearchResult } from './src/types/weather';
 
-// Importando Componentes
+
 import { CurrentWeather } from './src/components/CurrentWeather';
 import { HourlyForecast } from './src/components/HourlyForecast';
 import { WeatherDetails } from './src/components/WeatherDetails';
@@ -138,7 +138,7 @@ const WeatherContent = () => {
                   <Text style={styles.updateText}>Atualizado às {lastUpdated}</Text>
                 </View>
 
-                {/* AQUI ESTÁ A ASSINATURA */}
+
                 <Text style={styles.signatureText}>
                   Desenvolvido por <Text style={styles.signatureName}>Matheus Beiruth (github: BeiruthDEV)</Text> 🚀
                 </Text>
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   cityName: { fontSize: 32, fontWeight: 'bold', color: 'white', textShadowColor: 'rgba(0,0,0,0.2)', textShadowRadius: 4 },
   region: { color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1 },
 
-  // ESTILOS DO FOOTER (COM A CORREÇÃO AQUI)
+
   footer: { marginTop: 30, alignItems: 'center', gap: 8, marginBottom: 40 },
   footerText: { color: 'rgba(255,255,255,0.4)', fontSize: 10, textTransform: 'uppercase' },
   updateBadge: { flexDirection: 'row', gap: 5, backgroundColor: 'rgba(6, 78, 59, 0.4)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 20 },
