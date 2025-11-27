@@ -15,7 +15,7 @@ import { Forecast } from './src/components/Forecast';
 const WeatherContent = () => {
   const {
     weatherData, forecastData, hourlyData, loading, error, lastUpdated,
-    searchCity, loadWeather, fetchUserLocation, lastLocationRef
+    searchCity, loadWeather, fetchUserLocation, lastLocationRef, toggleUnit, unit
   } = useWeatherContext();
 
   const [city, setCity] = useState('');
@@ -126,7 +126,6 @@ const WeatherContent = () => {
                 <Text style={styles.region}>{weatherData.region}, {weatherData.country}</Text>
               </View>
 
-              {/* Componentes Normais (Sem AnimatedCard) */}
               <CurrentWeather />
               {hourlyData.length > 0 && <HourlyForecast />}
               <WeatherDetails />
@@ -138,6 +137,11 @@ const WeatherContent = () => {
                   <RefreshCw size={10} color="#6EE7B7" />
                   <Text style={styles.updateText}>Atualizado às {lastUpdated}</Text>
                 </View>
+
+                {/* AQUI ESTÁ A ASSINATURA */}
+                <Text style={styles.signatureText}>
+                  Desenvolvido por <Text style={styles.signatureName}>Matheus Beiruth (github: BeiruthDEV)</Text> 🚀
+                </Text>
               </View>
 
             </View>
@@ -172,10 +176,15 @@ const styles = StyleSheet.create({
   header: { alignItems: 'center', marginBottom: 20 },
   cityName: { fontSize: 32, fontWeight: 'bold', color: 'white', textShadowColor: 'rgba(0,0,0,0.2)', textShadowRadius: 4 },
   region: { color: 'rgba(255,255,255,0.8)', textTransform: 'uppercase', letterSpacing: 1 },
-  footer: { marginTop: 30, alignItems: 'center', gap: 5, marginBottom: 20 },
+
+  // ESTILOS DO FOOTER (COM A CORREÇÃO AQUI)
+  footer: { marginTop: 30, alignItems: 'center', gap: 8, marginBottom: 40 },
   footerText: { color: 'rgba(255,255,255,0.4)', fontSize: 10, textTransform: 'uppercase' },
   updateBadge: { flexDirection: 'row', gap: 5, backgroundColor: 'rgba(6, 78, 59, 0.4)', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 20 },
   updateText: { color: '#6EE7B7', fontSize: 10 },
+  signatureText: { color: 'rgba(255,255,255,0.3)', fontSize: 12, marginTop: 10 },
+  signatureName: { color: 'rgba(255,255,255,0.8)', fontWeight: 'bold' },
+
   modalContainer: { flex: 1, justifyContent: 'flex-end', backgroundColor: 'rgba(0,0,0,0.5)' },
   modalContent: { backgroundColor: '#fff', borderTopLeftRadius: 20, borderTopRightRadius: 20, padding: 20, maxHeight: '50%' },
   modalHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 15 },
