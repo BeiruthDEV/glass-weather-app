@@ -28,7 +28,10 @@ Veja o aplicativo em funcionamento:
 
 <div align="center">
   <br />
-  <em>Navegação fluida, temas dinâmicos e busca inteligente.</em>
+ 
+
+https://github.com/user-attachments/assets/9fd5a0d2-cbe0-4b0f-b0c4-7e0b3557b246
+
 </div>
 
 ---
