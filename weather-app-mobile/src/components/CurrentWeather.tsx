@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { getWeatherInfo, convertTemp } from '../utils/weather';
-import { useWeatherContext } from '../context/WeatherContext'; // <--- Importando Contexto
+import { useWeatherContext } from '../context/WeatherContext';
 
-// Removemos as props da função!
+
 export const CurrentWeather = () => {
-    // Pegamos os dados direto do contexto
+
     const { weatherData, unit, toggleUnit } = useWeatherContext();
 
     if (!weatherData) return null;

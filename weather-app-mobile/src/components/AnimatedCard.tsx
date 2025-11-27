@@ -10,7 +10,7 @@ import { ViewStyle } from 'react-native';
 
 interface AnimatedCardProps {
     children: React.ReactNode;
-    index?: number; // Para criar o efeito "cascata" (um depois do outro)
+    index?: number;
     style?: ViewStyle;
 }
 
@@ -19,8 +19,7 @@ export const AnimatedCard = ({ children, index = 0, style }: AnimatedCardProps) 
     const translateY = useSharedValue(50); // Começa 50px para baixo
 
     useEffect(() => {
-        // Inicia a animação
-        // index * 100 cria o delay para cada item aparecer depois do anterior
+
         const delay = index * 200;
 
         opacity.value = withDelay(delay, withTiming(1, { duration: 500 }));
@@ -28,7 +27,7 @@ export const AnimatedCard = ({ children, index = 0, style }: AnimatedCardProps) 
             delay,
             withTiming(0, {
                 duration: 500,
-                easing: Easing.out(Easing.cubic) // Efeito de desaceleração suave
+                easing: Easing.out(Easing.cubic)
             })
         );
     }, [index]);

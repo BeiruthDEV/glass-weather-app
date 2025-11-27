@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Location from 'expo-location';
-// Importamos os tipos que criamos no passo anterior
+
 import { WeatherData, ForecastItem, HourlyItem, CitySearchResult } from '../types/weather';
 
-// Interface do retorno do Hook (o que ele devolve para quem o usa)
+
 interface UseWeatherReturn {
     weatherData: WeatherData | null;
     forecastData: ForecastItem[];
@@ -31,7 +31,7 @@ export const useWeather = (): UseWeatherReturn => {
 
     const lastLocationRef = useRef<any>(null);
 
-    // 1. Carregar preferências salvas ao iniciar
+
     useEffect(() => {
         const loadPreferences = async () => {
             try {
@@ -53,7 +53,7 @@ export const useWeather = (): UseWeatherReturn => {
         loadPreferences();
     }, []);
 
-    // 2. Alternar Unidade e Salvar
+
     const toggleUnit = async () => {
         const newUnit = unit === 'C' ? 'F' : 'C';
         setUnit(newUnit);
@@ -64,13 +64,13 @@ export const useWeather = (): UseWeatherReturn => {
         }
     };
 
-    // 3. Lógica Central de Busca na API
+
     const fetchWeatherData = async (lat: number, lon: number, name: string, region: string, country: string) => {
         try {
-            // Salva referência para o "Puxar para Atualizar"
+
             lastLocationRef.current = { lat, lon, name, region, country };
 
-            // Salva no armazenamento local
+
             AsyncStorage.setItem('@weather_location', JSON.stringify({ lat, lon, name, region, country }));
 
             const response = await fetch(
@@ -80,7 +80,7 @@ export const useWeather = (): UseWeatherReturn => {
             if (!response.ok) throw new Error('Erro na API');
             const data = await response.json();
 
-            // Processar Diário
+
             const daily = data.daily;
             const formattedForecast: ForecastItem[] = daily.time.map((time: string, index: number) => ({
                 date: time,
@@ -89,7 +89,7 @@ export const useWeather = (): UseWeatherReturn => {
                 min: daily.temperature_2m_min[index],
             })).slice(1, 6);
 
-            // Processar Horário
+
             const hourly = data.hourly;
             const currentHour = new Date().getHours();
             const formattedHourly: HourlyItem[] = hourly.time
@@ -140,7 +140,7 @@ export const useWeather = (): UseWeatherReturn => {
         }
     };
 
-    // 4. Buscar Cidades (Geocoding)
+
     const searchCity = async (cityName: string): Promise<CitySearchResult[] | null> => {
         if (!cityName.trim()) return null;
         setLoading(true);
@@ -163,7 +163,7 @@ export const useWeather = (): UseWeatherReturn => {
         }
     };
 
-    // 5. Buscar GPS
+
     const fetchUserLocation = async () => {
         setLoading(true);
         setError('');
@@ -199,7 +199,7 @@ export const useWeather = (): UseWeatherReturn => {
         }
     };
 
-    // 6. Carregar Clima (Wrapper público)
+
     const loadWeather = async (lat: number, lon: number, name: string, admin1: string, country: string) => {
         setLoading(true);
         await fetchWeatherData(lat, lon, name, admin1, country);

@@ -14,7 +14,7 @@ export const WeatherDetails = () => {
         return new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit', timeZone: tz }).format(new Date(iso));
     };
 
-    // Definindo props explicitamente para o componente interno
+
     interface DetailCardProps {
         icon: React.ElementType;
         value: string | number;
